@@ -34,6 +34,14 @@ namespace GameOfLifeTests
 
         }
 
+        [Test]
+        public void ACellShouldNotConsiderHimselfANeighbor()
+        {
+            Cell cell = new Cell(0, 0);
+
+            Assert.That(cell.IsNeighbor(cell), Is.EqualTo(false));
+        }
+
 
     }
 }

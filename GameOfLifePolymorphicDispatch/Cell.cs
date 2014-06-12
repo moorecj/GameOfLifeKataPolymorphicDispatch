@@ -38,11 +38,16 @@ namespace GameOfLifePolymorphicDispatch
         {
             bool isNeighbor = false;
 
-            if (IsWithinOneXDimension(cell) && IsWithinOneYDimension(cell))
+            if (IsWithinOneXDimension(cell) && IsWithinOneYDimension(cell) && IsNotSameCell(cell))
                 isNeighbor = true;
 
             return (isNeighbor);
 
+        }
+
+        private bool IsNotSameCell(Cell cell)
+        {
+            return !(x == cell.GetXCoordinate() && y == cell.GetYCoordinate());
         }
 
         private bool IsWithinOneXDimension(Cell cell)
