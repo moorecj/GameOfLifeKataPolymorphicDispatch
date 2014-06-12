@@ -6,18 +6,8 @@ using System.Threading.Tasks;
 
 namespace GameOfLifePolymorphicDispatch
 {
-    public class GameOfLife
+    class Rules
     {
-        List<Cell> gameBoard;
-
-        public GameOfLife( List<Cell> gameBoard )
-        {
-            this.gameBoard = gameBoard;
-
-        }
-
-
-
 
     }
 }

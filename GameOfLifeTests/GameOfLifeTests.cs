@@ -42,6 +42,41 @@ namespace GameOfLifeTests
             Assert.That(cell.IsNeighbor(cell), Is.EqualTo(false));
         }
 
+        [Test]
+        public void AGameShouldTakeListOfCells()
+        {
+            Cell cell1 = new Cell(0, 0);
+
+            List<Cell> gameBoard = new List<Cell>();
+
+            gameBoard.Add(cell1);
+
+            GameOfLife game = new GameOfLife(gameBoard);
+
+            Assert.That(game, Is.Not.Null);
+
+        }
+
+        [Test]
+        public void WithASingleLiveCell_OneTickShouldResultInNoLiveCells()
+        {
+            Cell cell1 = new Cell(0, 0);
+
+            List<Cell> gameBoard = new List<Cell>();
+
+            gameBoard.Add(cell1);
+
+            GameOfLife game = new GameOfLife(gameBoard);
+
+            game.Tick();
+
+            Assert.That(game.GetBoard(), Is.Empty());
+
+
+        }
+
+
+
 
     }
 }
