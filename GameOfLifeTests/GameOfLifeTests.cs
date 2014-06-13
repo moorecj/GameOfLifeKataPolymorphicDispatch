@@ -7,6 +7,7 @@ using NUnit.Framework;
 using GameOfLifePolymorphicDispatch;
 
 
+
 namespace GameOfLifeTests
 {
     [TestFixture]
@@ -74,6 +75,29 @@ namespace GameOfLifeTests
 
 
         }
+
+        [Test]
+        public void AnyCellWithTwoOrThreeLiveNeighbbors_WillSurviveAfterOneTick()
+        {
+            Cell cell1 = new Cell(0, 0);
+            Cell cell2 = new Cell(1, 0);
+            Cell cell3 = new Cell(0, 1);
+
+            List<Cell> gameBoard = new List<Cell>();
+
+            gameBoard.Add(cell1);
+            gameBoard.Add(cell2);
+            gameBoard.Add(cell3);
+
+            GameOfLife game = new GameOfLife(gameBoard);
+
+            game.Tick();
+
+            Assert.That(game.GetBoard()[0].GetXCoordinate(), Is.EqualTo(0));
+            Assert.That(game.GetBoard()[0].GetYCoordinate(), Is.EqualTo(0));
+
+        }
+
 
 
 
