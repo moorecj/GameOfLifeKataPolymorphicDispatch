@@ -61,6 +61,24 @@ namespace GameOfLifePolymorphicDispatch
             return (Math.Abs(y - cell.GetYCoordinate()) <= 1);
         }
 
+        public int GetNeighborCount(List<Cell> posssibleNeighbors)
+        {
+            int neighborCount = 0;
+
+            for (int i = 0; i < posssibleNeighbors.Count(); ++i)
+            {
+
+                foreach (Cell c in posssibleNeighbors.GetRange(i, posssibleNeighbors.Count() - i))
+                {
+                    if (posssibleNeighbors[i].IsNeighbor(c))
+                        ++neighborCount;
+
+                }
+
+            }
+
+            return neighborCount;
+        }
  
     }
 }

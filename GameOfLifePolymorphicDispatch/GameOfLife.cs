@@ -34,7 +34,6 @@ namespace GameOfLifePolymorphicDispatch
 
         public List<Cell> GetBoard()
         {
-
             return gameBoard;
 
         }

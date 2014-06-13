@@ -19,25 +19,16 @@ namespace GameOfLifePolymorphicDispatch
 
         override public void ApplyRule(List<Cell> gameBoard, ref List<Cell> newGameBoard )
         {
-            int neighborCount = 0;
-
             newGameBoard = gameBoard.DeepClone();
 
             for( int i = 0; i < gameBoard.Count(); ++i )
             {
-                
-                foreach ( Cell c in gameBoard.GetRange(i, gameBoard.Count() - i) )
-                {
-                    if (gameBoard[i].IsNeighbor(c))
-                        ++neighborCount;
-
-                }
-
-                if (neighborCount < 2)
+                if (gameBoard[i].GetNeighborCount(gameBoard) < 2)
                     newGameBoard.Remove(newGameBoard[i]);
             }
 
         }
+
     }
 
 
