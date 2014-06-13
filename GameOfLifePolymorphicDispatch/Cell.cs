@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameOfLifePolymorphicDispatch
 {
+    [Serializable]
     public class Cell
     {
         private int x;
