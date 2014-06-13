@@ -70,7 +70,7 @@ namespace GameOfLifeTests
 
             game.Tick();
 
-            Assert.That(game.GetBoard(), Is.Empty());
+            Assert.That(game.GetBoard(), Is.Empty);
 
 
         }

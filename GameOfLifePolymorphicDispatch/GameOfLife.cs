@@ -16,8 +16,17 @@ namespace GameOfLifePolymorphicDispatch
 
         }
 
+        public void Tick()
+        {
 
+        }
 
+        public List<Cell> GetBoard()
+        {
+
+            return gameBoard;
+
+        }
 
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace GameOfLifePolymorphicDispatch
 {
-    class Rules
+    abstract class Rules
     {
+        abstract public List<Cell> ApplyRule(List<Cell> gameBoard);
 
     }
 }
