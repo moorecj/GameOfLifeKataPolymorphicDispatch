@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GameOfLifePolymorphicDispatch
 {
     [Serializable]
-    public class Cell
+    public class Cell : IEquatable<Cell>
     {
         private int x;
         private int y;
@@ -65,20 +65,62 @@ namespace GameOfLifePolymorphicDispatch
         {
             int neighborCount = 0;
 
-            for (int i = 0; i < posssibleNeighbors.Count(); ++i)
+            
+            foreach (Cell c in posssibleNeighbors)
             {
-
-                foreach (Cell c in posssibleNeighbors.GetRange(i, posssibleNeighbors.Count() - i))
-                {
-                    if (posssibleNeighbors[i].IsNeighbor(c))
-                        ++neighborCount;
-
-                }
+                if (this.IsNeighbor(c))
+                    ++neighborCount;
 
             }
 
+
             return neighborCount;
         }
+
+
+        public bool Equals (Cell other )
+        {
+            if (other == null)
+                return false;
+
+            if (((this.GetXCoordinate() - other.GetXCoordinate()) == 0) && ((this.GetYCoordinate() - other.GetYCoordinate()) == 0))
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+                return false;
+
+            Cell cellObj = obj as Cell;
+            if (cellObj == null)
+                return false;
+            else
+                return Equals(cellObj);
+        }
+
+        public static bool operator ==(Cell cell1, Cell cell2)
+        {
+            if ((object)cell1 == null || ((object)cell2) == null)
+                return Object.Equals(cell1, cell2);
+
+            return cell1.Equals(cell2);
+        }
+
+        public static bool operator !=(Cell cell1, Cell cell2)
+        {
+            if (cell1 == null || cell2 == null)
+                return !Object.Equals(cell1, cell2);
+
+            return !(cell1.Equals(cell2));
+        }
+
+
  
     }
 }

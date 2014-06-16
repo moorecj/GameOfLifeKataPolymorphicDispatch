@@ -11,6 +11,9 @@ namespace GameOfLifePolymorphicDispatch
     [Serializable]
     public class GameOfLife
     {
+
+        List<Rules> listOfRules;
+
         List<Cell> gameBoard;
         List<Cell> newGameBoard = new List<Cell>();
 
@@ -20,14 +23,22 @@ namespace GameOfLifePolymorphicDispatch
 
             newGameBoard = gameBoard.DeepClone();
 
+            listOfRules.Add(new UnderPopulation());
+            listOfRules.Add(new OverCrowding());
+
+
         }
 
         public void Tick()
         {
-             UnderPopulation underpopRule =  new UnderPopulation();
 
-             underpopRule.ApplyRule(gameBoard, ref newGameBoard);
+             newGameBoard = gameBoard.DeepClone();
 
+             foreach( Rules r in listOfRules)
+             {
+                 r.ApplyRule(gameBoard, ref newGameBoard);    
+             }
+             
              gameBoard = newGameBoard.DeepClone();
 
         }

@@ -98,8 +98,43 @@ namespace GameOfLifeTests
 
         }
 
+        [Test]
+        public void AnyCellWithMoreThenThreeLiveNeighbbors_WillDieAfterOneTick()
+        {
+            Cell cell1 = new Cell(0, 0);
+            Cell cell2 = new Cell(1, 0);
+            Cell cell3 = new Cell(0, 1);
+            Cell cell4 = new Cell(1, 1);
+            Cell cell5 = new Cell(2, 0);
+
+            Cell test = new Cell(0, 0);
+
+            List<Cell> gameBoard = new List<Cell>();
+
+            gameBoard.Add(cell1);
+            gameBoard.Add(cell2);
+            gameBoard.Add(cell3);
+            gameBoard.Add(cell4);
+            gameBoard.Add(cell5);
 
 
+            GameOfLife game = new GameOfLife(gameBoard);
+
+            game.Tick();
+
+            List<Cell> expected = new List<Cell>();
+
+            expected.Add(cell1);
+            expected.Add(cell3);
+            expected.Add(cell5);
+
+
+            CollectionAssert.AreEquivalent(expected, game.GetBoard() );
+
+        }
+
+
+        
 
 
     }
