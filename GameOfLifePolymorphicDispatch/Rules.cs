@@ -63,25 +63,28 @@ namespace GameOfLifePolymorphicDispatch
         public override void ApplyRule(List<Cell> gameBoard, ref List<Cell> newGameBoard)
         {
 
-            for (int i = 0; i < gameBoard.Count(); ++i)
+            foreach(Cell c in gameBoard )
             {
-                for(int x = -1; x < 2; ++x )
+                CheckSurroundingCellsForReproduction(gameBoard, newGameBoard, c);
+
+            }
+            
+        }
+
+
+        private void CheckSurroundingCellsForReproduction(List<Cell> gameBoard, List<Cell> newGameBoard, Cell c)
+        {
+            for (int x = -1; x < 2; ++x)
+            {
+                for (int y = -1; y < 2; ++y)
                 {
-                    for(int y = -1; y < 2; ++y)
+                    Cell neighbor = new Cell(c.GetXCoordinate() + x, c.GetYCoordinate() + y);
+
+                    if (IsAvailableDeadCell(gameBoard, newGameBoard, neighbor))
                     {
-                        Cell neighbor = new Cell(gameBoard[i].GetXCoordinate() + x, gameBoard[i].GetYCoordinate() + y);
-
-                        if (CellIsDead(neighbor, gameBoard))
+                        if (WillReproduce(gameBoard, neighbor))
                         {
-                            if (CellIsDead(neighbor, newGameBoard))
-                            {
-                                if (neighbor.GetNeighborCount(gameBoard) == 3)
-                                {
-                                    newGameBoard.Add(neighbor);
-                                }
-
-                            }
-
+                            newGameBoard.Add(neighbor);
                         }
 
                     }
@@ -89,7 +92,16 @@ namespace GameOfLifePolymorphicDispatch
                 }
 
             }
-            
+        }
+
+        private bool IsAvailableDeadCell(List<Cell> gameBoard, List<Cell> newGameBoard, Cell neighbor)
+        {
+            return (CellIsDead(neighbor, gameBoard)) && (CellIsDead(neighbor, newGameBoard));
+        }
+
+        private static bool WillReproduce(List<Cell> gameBoard, Cell neighbor)
+        {
+            return neighbor.GetNeighborCount(gameBoard) == 3;
         }
 
         private bool CellIsDead( Cell cell, List<Cell> gameBoard )
@@ -97,6 +109,7 @@ namespace GameOfLifePolymorphicDispatch
             return !(gameBoard.Exists(c => c == cell));
 
         }
+
     }
 
     
