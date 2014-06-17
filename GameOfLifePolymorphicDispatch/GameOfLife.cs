@@ -27,6 +27,7 @@ namespace GameOfLifePolymorphicDispatch
 
             listOfRules.Add(new UnderPopulation());
             listOfRules.Add(new OverCrowding());
+            listOfRules.Add(new Reproduction());
 
 
         }

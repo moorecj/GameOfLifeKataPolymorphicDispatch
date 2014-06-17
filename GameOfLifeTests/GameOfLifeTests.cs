@@ -118,16 +118,12 @@ namespace GameOfLifeTests
 
             GameOfLife game = new GameOfLife(gameBoard);
 
-            game.Tick();
-
-            List<Cell> expected = new List<Cell>();
-
-            expected.Add(cell1);
-            expected.Add(cell3);
-            expected.Add(cell5);
+            game.Tick();   
+            
+            Assert.That(game.GetBoard().Exists(c => c == cell2 ), Is.False);
+            Assert.That(game.GetBoard().Exists(c => c == cell4), Is.False);
 
 
-            CollectionAssert.AreEquivalent(expected, game.GetBoard() );
 
         }
 

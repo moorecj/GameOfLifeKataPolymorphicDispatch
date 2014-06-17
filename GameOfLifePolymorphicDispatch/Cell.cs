@@ -24,7 +24,6 @@ namespace GameOfLifePolymorphicDispatch
             y = 0;
         }
 
-
         public int GetXCoordinate( )
         {
             return (x);

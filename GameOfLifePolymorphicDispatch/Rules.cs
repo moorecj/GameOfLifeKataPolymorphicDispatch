@@ -58,6 +58,47 @@ namespace GameOfLifePolymorphicDispatch
         }
     }
 
+    public class Reproduction : Rules
+    {
+        public override void ApplyRule(List<Cell> gameBoard, ref List<Cell> newGameBoard)
+        {
+
+            for (int i = 0; i < gameBoard.Count(); ++i)
+            {
+                for(int x = -1; x < 2; ++x )
+                {
+                    for(int y = -1; y < 2; ++y)
+                    {
+                        Cell neighbor = new Cell(gameBoard[i].GetXCoordinate() + x, gameBoard[i].GetYCoordinate() + y);
+
+                        if (CellIsDead(neighbor, gameBoard))
+                        {
+                            if (CellIsDead(neighbor, newGameBoard))
+                            {
+                                if (neighbor.GetNeighborCount(gameBoard) == 3)
+                                {
+                                    newGameBoard.Add(neighbor);
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+            
+        }
+
+        private bool CellIsDead( Cell cell, List<Cell> gameBoard )
+        {
+            return !(gameBoard.Exists(c => c == cell));
+
+        }
+    }
+
     
 
 
