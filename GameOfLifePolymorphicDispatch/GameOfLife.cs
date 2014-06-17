@@ -13,15 +13,17 @@ namespace GameOfLifePolymorphicDispatch
     {
 
         List<Rules> listOfRules;
-
         List<Cell> gameBoard;
         List<Cell> newGameBoard = new List<Cell>();
+
 
         public GameOfLife( List<Cell> gameBoard )
         {
             this.gameBoard = gameBoard;
 
             newGameBoard = gameBoard.DeepClone();
+
+            listOfRules = new List<Rules>();
 
             listOfRules.Add(new UnderPopulation());
             listOfRules.Add(new OverCrowding());
