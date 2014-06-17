@@ -107,8 +107,6 @@ namespace GameOfLifeTests
             Cell cell4 = new Cell(1, 1);
             Cell cell5 = new Cell(2, 0);
 
-            Cell test = new Cell(0, 0);
-
             List<Cell> gameBoard = new List<Cell>();
 
             gameBoard.Add(cell1);
@@ -130,6 +128,36 @@ namespace GameOfLifeTests
 
 
             CollectionAssert.AreEquivalent(expected, game.GetBoard() );
+
+        }
+
+        [Test]
+        public void AnyDeadCellWithExactlyThreeLiveNeighbbors_BecomeAliveOneTick()
+        {
+            Cell cell1 = new Cell(0, 0);
+            Cell cell2 = new Cell(1, 0);
+            Cell cell3 = new Cell(0, 1);
+
+            List<Cell> gameBoard = new List<Cell>();
+
+            gameBoard.Add(cell1);
+            gameBoard.Add(cell2);
+            gameBoard.Add(cell3);
+
+
+            GameOfLife game = new GameOfLife(gameBoard);
+
+            game.Tick();
+
+            List<Cell> expected = new List<Cell>();
+
+            expected.Add(new Cell(0, 0));
+            expected.Add(new Cell(1, 0));
+            expected.Add(new Cell(0, 1));
+            expected.Add(new Cell(1, 1));
+
+
+            CollectionAssert.AreEquivalent(expected, game.GetBoard());
 
         }
 
